@@ -1,0 +1,106 @@
+ESI: https://esi.microsoft.com/
+=========================================================================================================================================
+DP-100 Designing and Implementing a Data Science Solution on Azure
+Training Key: 3EE4294F7B09418E (valid till August 7)
+
+https://microsoftlearning.github.io/mslearn-dp100/
+https://github.com/MicrosoftLearning/DP100
+https://github.com/MicrosoftLearning/mslearn-dp100
+DP-090 Databricks
+https://aka.ms/esiAzureTrainingJourney
+https://aka.ms/ESIStudyGuides
+*** Exam Preparations
+*** Microsoft Certifications (30 day license)
+
+*** measureup site for practice exams
+
+practice exam tests in ESI profile
+==========================================================================================================================================
+Courses recommended / required for Azure Data Science Associate certification
+https://docs.microsoft.com/en-us/learn/certifications/azure-data-scientist/
+==========================================================================================================================================
+Resources:
+learn.microsoft.com
+microsoft.com/certification
+aka.ms/moc
+aka.ms/architecture
+aka.ms/traincertposter
+
+https://towardsdatascience.com/finally-why-we-use-an-80-20-split-for-training-and-test-data-plus-an-alternative-method-oh-yes-edc77e96295d
+https://docs.microsoft.com/en-us/azure/machine-learning/concept-component
+https://www.analyticsvidhya.com/blog/2021/05/shape-of-data-skewness-and-kurtosis
+https://towardsdatascience.com/the-basics-logistic-regression-and-regularization-828b0d2d206c
+https://developers.google.com/machine-learning/crash-course/classification/precision-and-recall
+https://github.com/Jason-M-Richards/Data-Science-Toolkit
+https://docs.microsoft.com/en-us/azure/databricks/release-notes/runtime/9.1ml
+https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-batch-endpoint
+https://thedatadetectivenet-my.sharepoint.com/personal/jason_thedatadetective_net/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fjason%5Fthedatadetective%5Fnet%2FDocuments%2FMS%20Training%20Materials%2FDP100%2FDP100%20folder%20share&ct=1644440320781&or=Teams%2DHL
+==========================================================================================================================================
+MS Learn MS Accounts:
+antongeorgescu@yahoo.ca
+Finastra2022!
+anton.georgescu@finastra.com
+<password>
+
+Azure Pass Subscription - Promo Code: QDLDTJ9J35Q63KNOV9 (valid 31 days)
+==========================================================================================================================================
+To explore - courses:
+Containers & Kubernetes (Azure Container Instances & Azure Kubernetes Service)
+Azure HDInsight for transfer & transform (on top of ADF, Azure Databricks)
+Azure App Service / Azure Functions
+DP-090 (Databricks)
+==========================================================================================================================================
+
+DP-100 Training Resources
+Subscription: Azure Pass - Sponsorship
+Resource Group: mlresourcegroup
+Workspace: mlresource-aml
+Compute: mlanode-alvianda
+Compute Cluster: mlanodeclustr-alv
+
+***** TO KNOW ****************************************************************************************************************************
+Azure Functions accessed through key OR token (Sanaz)
+Visual Studio Code extensions: Azure Machine Learning
+Evaluation metrics: Precision, Recall, ROC, AUC (Area Under Curve) - the higher AUC, the better the classification model
+Kurtosis, Skewered, etc. dataset profile
+Model accuracy, precision, recall
+MaxAbsScaler,LightGBM
+AutoML vs ML Designer
+Real-time vs Batch pipeline to publish a service endpoint
+Training vs Inference Pipeline
+Designer / Authroing --> enter stock data
+ML Designer Text Analyzer module against article
+
+Azure HDInsight
+
+Running a script as an exepriment: script (Run.get_context()) vs Control code (pick up a script)
+
+from azureml.core import Run
+run = Run.get_context()
+run.log(...)
+run.complete()
+
+MLflow "inline" vs ["script","Control code"]
+
+Be very clear about AutoML, AML Designer and Inline Runs
+
+Azure Storage vs ADL vs Azure SQL Db vs Azure Databricks File System
+azureml_globaldatasets & workspaceartifactstore & workspaceblobstore & workspacefilestore
+
+docker vs containers
+
+try to run "Local Compute" on local laptop
+
+Estimator class/object/lib in azureml
+
+Azure DevOps Pipelines vs Github Actions
+
+Cosmos DB - reference architectures
+distribution: normal vs uniform vs lognormal vs loguniform
+
+Bayesian sampling vs grid sampling
+
+SMOTE - add statistical noise (eg "epsilon")
+Selection rate disparity vs Prediction performance disparity
+
+Recall = ability of model to always perform the same ???
