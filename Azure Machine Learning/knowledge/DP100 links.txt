@@ -1,0 +1,137 @@
+Mod 1 - getting started with AML
+
+Microsoft Learn: Introduction to Azure Machine Learning
+https://docs.microsoft.com/learn/modules/intro-to-azure-machine-learning-service   
+
+Azure Machine Learning architecture and concepts documentation
+https://docs.microsoft.com/azure/machine-learning/concept-azure-machine-learning-architecture  
+
+Azure Machine Learning studio documentation
+https://docs.microsoft.com/azure/machine-learning/overview-what-is-machine-learning-studio
+
+Azure Machine Learning enterprise security documentation
+https://docs.microsoft.com/azure/machine-learning/concept-enterprise-security
+
+Azure Machine Learning Python SDK documentation
+https://docs.microsoft.com/python/api/overview/azure/ml/intro
+
+Azure Machine Learning extension for Visual Studio Code documentation
+https://docs.microsoft.com/azure/machine-learning/tutorial-setup-vscode-extension 
+
+Mod 2 - no code ML
+
+Microsoft Learn: Create no-code predictive models with Azure Machine Learning
+https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning   
+
+Automated Machine Learning documentation
+https://docs.microsoft.com/azure/machine-learning/concept-automated-ml  
+
+Designer documentation
+https://docs.microsoft.com/azure/machine-learning/concept-designer  
+
+Mod 3 - experiments and model training
+
+Microsoft Learn: Introduction to Azure Machine Learning
+https://docs.microsoft.com/learn/modules/intro-to-azure-machine-learning-service   
+
+Microsoft Learn: Train a machine learning model with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/train-local-model-with-azure-mls  
+
+Azure Machine Learning training run documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-set-up-training-targets 
+
+Mod 4 - working with data
+
+Microsoft Learn: Work with Data in Azure Machine Learning
+https://docs.microsoft.com/learn/modules/work-with-data-in-aml/  
+
+Azure Machine Learning data documentation
+https://docs.microsoft.com/azure/machine-learning/concept-data 
+
+Mod 5 - working with compute
+
+Microsoft Learn: Work with Compute in Azure Machine Learning
+https://docs.microsoft.com/learn/modules/use-compute-contexts-in-aml/  
+
+Azure Machine Learning environments documentation
+https://docs.microsoft.com/azure/machine-learning/concept-environments 
+
+Azure Machine Learning compute targets documentation
+https://docs.microsoft.com/azure/machine-learning/concept-compute-target 
+
+Microsoft Learn: Perform data science with Azure Databricks
+https://docs.microsoft.com/learn/paths/perform-data-science-azure-databricks/ 
+
+Mod 6 - orchestrating workflows
+
+Microsoft Learn: Orchestrate machine learning with pipelines
+https://docs.microsoft.com/learn/modules/create-pipelines-in-aml/  
+
+Azure Machine Learning pipelines documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-create-your-first-pipeline  
+
+Azure Machine Learning ML Ops documentation
+https://docs.microsoft.com/azure/machine-learning/concept-model-management-and-deployment  
+
+Azure Machine Learning events documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-use-event-grid 
+
+Mod 7 - deploying Models
+
+Microsoft Learn: Deploy real-time machine learning services with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/register-and-deploy-model-with-amls    
+
+Microsoft Learn: Deploy batch inference pipelines with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/deploy-batch-inference-pipelines-with-azure-machine-learning   
+
+Azure Machine Learning model deployment documentation
+https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where 
+
+CI/CD with Azure Pipelines documentation
+https://docs.microsoft.com/azure/devops/pipelines/targets/azure-machine-learning 
+
+CI/CD with GitHub Actions documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-github-actions-machine-learning 
+
+Mod 8 - tuning models
+
+Microsoft Learn: Tune hyperparameters with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/tune-hyperparameters-with-azure-machine-learning/    
+
+Microsoft Learn: Automate machine learning model selection with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/  
+
+Azure Machine Learning hyperparameter tuning documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-tune-hyperparameters  
+
+Azure Machine Learning automated machine learning documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-configure-auto-train  
+
+Mod 9 - responsible ML
+
+Microsoft Learn: Explore differential privacy
+https://docs.microsoft.com/learn/modules/explore-differential-privacy
+
+Microsoft Learn: Explain machine learning models with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/explain-machine-learning-models-with-azure-machine-learning   
+
+Microsoft Learn: Detect and mitigate unfairness in models with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/detect-mitigate-unfairness-models-with-azure-machine-learning
+
+Azure Machine Learning responsible ML documentation
+https://docs.microsoft.com/azure/machine-learning/concept-responsible-ml 
+
+Mod 10 - monitoring in AML
+
+Microsoft Learn: Monitor models with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/monitor-models-with-azure-machine-learning   
+
+Microsoft Learn: Monitor data drift with Azure Machine Learning
+https://docs.microsoft.com/learn/modules/monitor-data-drift-with-azure-machine-learning   
+
+Azure Machine Learning monitoring with Application Insights documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-enable-app-insights  
+
+Azure Machine Learning data drift documentation
+https://docs.microsoft.com/azure/machine-learning/how-to-monitor-datasets  
+

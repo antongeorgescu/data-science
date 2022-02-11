@@ -1,0 +1,9 @@
+# Get the most recent run of the pipeline
+pipeline_experiment = ws.experiments.get('training-pipeline')
+run = list(pipeline_experiment.get_runs())[0]
+
+# Publish the pipeline from the run
+published_pipeline = run.publish_pipeline(name='training_pipeline',description='Model training pipeline',version='1.0')
+
+rest_endpoint = published_pipeline.endpoint()
+print(rest_endpoint)
