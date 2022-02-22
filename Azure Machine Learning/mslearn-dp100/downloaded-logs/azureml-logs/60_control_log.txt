@@ -1,0 +1,26 @@
+[2022-02-15T16:04:16.003305] Using urllib.request Python 3.0 or later
+Streaming log file azureml-logs/60_control_log.txt
+Running: ['cmd.exe', '/c', 'C:\\Users\\ag4488\\AppData\\Local\\Temp\\azureml_runs\\mslearn-diabetes_1644941052_fd825f91\\azureml-environment-setup/conda_env_checker.bat']
+Starting the daemon thread to refresh tokens in background for process with pid = 27004
+Found materialized conda environment in: C:\Users\ag4488/.azureml/envs/azureml_2a26795ceaa057dc05a99cff9a3f7e3a
+
+
+Running: ['C:\\Users\\ag4488/.azureml/envs/azureml_2a26795ceaa057dc05a99cff9a3f7e3a/python.exe', 'azureml-setup/run_script.py', '$USERPROFILE/.azureml/envs/azureml_2a26795ceaa057dc05a99cff9a3f7e3a/python.exe', 'azureml-setup/context_manager_injector.py', '-i', 'ProjectPythonPath:context_managers.ProjectPythonPath', '-i', 'RunHistory:context_managers.RunHistory', '-i', 'TrackUserError:context_managers.TrackUserError', 'diabetes_experiment.py']
+[2022-02-15T16:04:16.249937] Logging experiment running status in history service.
+Streaming log file azureml-logs/70_driver_log.txt
+Starting the daemon thread to refresh tokens in background for process with pid = 17884
+Script process exited with code 1
+Uploading driver log...
+Finalizing run...
+[2022-02-15T11:04:26.098092] get vm size and vm region successfully.
+[2022-02-15T11:04:26.119091] get compute meta data successfully.
+[2022-02-15T11:04:26.565786] post artifact meta request successfully.
+[2022-02-15T11:04:26.833060] upload compute record artifact successfully.
+
+Script process exited with code 1. Please check driver log for more information on why the script failed.
+
+
+[2022-02-15T16:04:26.899065] Entering context manager injector.
+[2022-02-15T16:04:28.182191] Logging error in history service: Local execution of User Script failed. Details can be found in azureml-logs/60_control_log.txt log file.
+
+Uploading control log...

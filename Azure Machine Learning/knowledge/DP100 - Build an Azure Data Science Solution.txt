@@ -9,6 +9,7 @@ https://github.com/MicrosoftLearning/mslearn-dp100
 DP-090 Databricks
 https://aka.ms/esiAzureTrainingJourney
 https://aka.ms/ESIStudyGuides
+https://developers.google.com/machine-learning/crash-course/exercises
 *** Exam Preparations
 *** Microsoft Certifications (30 day license)
 
@@ -104,3 +105,9 @@ SMOTE - add statistical noise (eg "epsilon")
 Selection rate disparity vs Prediction performance disparity
 
 Recall = ability of model to always perform the same ???
+
+[X] data featurization
+
+[X] cross validation - https://dataaspirant.com/cross-validation/
+
+Time Series forecast with AutoArima https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-auto-train

@@ -1,0 +1,19 @@
+[2022-02-15T17:04:53.633577] Entering context manager injector.
+[2022-02-15T17:04:55.042109] context_manager_injector.py Command line Options: Namespace(inject=['ProjectPythonPath:context_managers.ProjectPythonPath', 'RunHistory:context_managers.RunHistory', 'TrackUserError:context_managers.TrackUserError'], invocation=['exp_sample_dataset.py'])
+Script type = None
+[2022-02-15T17:04:55.049112] Entering Run History Context Manager.
+[2022-02-15T17:04:57.126508] Current directory: C:\Users\ag4488\AppData\Local\Temp\azureml_runs\experiment-pysdk-by-script_1644944689_ae4385ae
+[2022-02-15T17:04:57.127508] Preparing to call script [exp_sample_dataset.py] with arguments:[]
+[2022-02-15T17:04:57.127508] After variable expansion, calling script [exp_sample_dataset.py] with arguments:[]
+
+Analyzing 1235 rows of data
+
+
+[2022-02-15T17:05:32.223224] The experiment completed successfully. Finalizing run...
+[2022-02-15T17:05:32.223224] Start FinalizingInRunHistory
+[2022-02-15T17:05:32.228224] Logging experiment finalizing status in history service.
+Starting the daemon thread to refresh tokens in background for process with pid = 16652
+Cleaning up all outstanding Run operations, waiting 300.0 seconds
+2 items cleaning up...
+Cleanup took 0.7015550136566162 seconds
+[2022-02-15T17:05:36.307791] Finished context manager injector.
