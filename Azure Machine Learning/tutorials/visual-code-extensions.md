@@ -43,6 +43,6 @@
 * zaaack.markdown-editor 
 * Zowe.vscode-extension-for-zowe 
 
-**Install extension by providing its name from the list above: **
+**Install extension by providing its name from the list above**
 
 ![vscode-add-extension](https://user-images.githubusercontent.com/6631390/155423543-3907c2b6-8d7c-4179-be2b-b75c2541f705.png)
