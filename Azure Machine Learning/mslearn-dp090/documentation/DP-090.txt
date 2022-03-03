@@ -1,0 +1,20 @@
+https://microsoftlearning.github.io/dp-090-databricks-ml/
+https://aka.ms/esilabs
+training key: C0BA025647C34D5D
+	user=Student
+	pwd=Pa55w.rd
+Promocode: QMZZ21VPCLCEYQXFOR
+Query distribution -> Map-reduce BORN FROM HADOOP
+
+*** Spark built on top of Hadoop Cluster (spark.apache.org)
+
+Binning (applied to data)
+
+VectorAssembler - explain!
+
+http://databricks.com/product/data-ingestion
+
+Azure Kubernet Services (AKS) provide REST API?
+AZure Container Instance (ACI) provide REST API?
+
+https://docs.microsoft.com/en-us/dotnet/machine-learning/how-to-guides/serve-model-serverless-azure-functions-ml-net#:~:text=1%20Create%20Azure%20Functions%20project%202%20node%20followed,and%20hit%20Enter.%205%20Install%20the%20Microsoft.%20
