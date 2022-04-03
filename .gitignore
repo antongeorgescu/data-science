@@ -153,3 +153,8 @@ cython_debug/
 
 miniconda/
 miniconda_installer.exe
+
+# Other
+*.jpeg
+*.png
+*.jpg
