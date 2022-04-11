@@ -213,8 +213,23 @@ However, you can create discrete hyperparameters using a distribution (like a ra
     + Do not use a SHAP tree explainer for calculate feature importance. SHAP is not model-agniostic and is used for TreeBased models. 
     + Do not use a global surrogate with a mimic explainer to explain the model. A global surrogate is meant to be an interpretable approximation of a black box model. Black box models are those for whihc no explanation exists. Once  surrogate model is trained, mimic explainer can be used to interpret the model.
 
-* <h2>Check the following !!!</h2>
-    1. Difference between "Tabular Dataset" and "Pandas Dataset" (explain why the function below is correct!)<br/>
+* You configure an Azure ML experiment using the following code:
+```
+        import azureml.core
+        from azurem;.core import Workspace,Experiment
+        ws = Workspace.from_config()
+        script_params = ["--experiment_output",experiment_output]
+        exp = Experiment(ws,experiment_name)
+```
+Too ensure output files are uploaded in real time you need to add <i>experiment_output = s.path.join(os.curdir,"logs") line of code.Azure ML supports a few locations for storing exepriment output. Files can be saved to storage on the local compute instance, but these files do not persist across the runs. To store files for later analysis and review, you either use Azure ML datastore, or write to the <i>outputs</i> or <i>logs</i> folders. However, for <i>outputs</i> folder, the files are not uploaded in real-time.
+
+* You use Azure ML to create an ML pipeline. Need to ensure that files can be passed between pipelines steps using a named datastore. To do that:
+    + regsiter a new Azure Storage file container daatstore
+    + create a PipelineData object. Specify a name and output datastore
+    + specify a PipelineData object for data output (in between steps)
+
+* <h2>Questions / To Clarify</h2>
+    1. Difference between "Tabular Dataset" and "Pandas Dataset" (explain why the function below is correct!)
 ```
             jan_ds = time_series_ds.time_between(
                                         start_time=datetime(2019,12,31),
@@ -226,8 +241,14 @@ However, you can create discrete hyperparameters using a distribution (like a ra
     2. Azure Log Analytics - is it part of Azure Monitor? What about Azure App Insights?<br/>
     3. Highly imbalanced datasets and right metrics<br/>
     4. MLFlow - details<br/>
+    5. Difference between "publish to web service" and "publish to endpoint" when publishing a pipeline
+    6. What is "spearman correlation"
 
+* **Create Image Labeling Project** at https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-image-labeling-projects
+
+* Machine Learning Designer runs only on ML Compute Cluster
 <hr/>
+
 
 # Azure ML Links: 
 1. https://christophm.github.io/interpretable-ml-book/ 
@@ -249,6 +270,7 @@ However, you can create discrete hyperparameters using a distribution (like a ra
 17. https://docs.microsoft.com/en-us/cli/azure/ml/workspace?view=azure-cli-latest
 18. https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-auto-train
 19. https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml
+20. https://docs.microsoft.com/en-us/azure/machine-learning/how-to-assign-roles
 
 # Statistics Links
 1. Understanding Boxplots - https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51#:~:text=A%20boxplot%20is%20a%20standardized,and%20what%20their%20values%20are.
