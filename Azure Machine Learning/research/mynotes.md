@@ -228,27 +228,94 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
     + create a PipelineData object. Specify a name and output datastore
     + specify a PipelineData object for data output (in between steps)
 
-* <h2>Questions / To Clarify</h2>
-    1. Difference between "Tabular Dataset" and "Pandas Dataset" (explain why the function below is correct!)
+* Questions / To Clarify
+    + Difference between "Tabular Dataset" and "Pandas Dataset" (explain why the function below is correct!)
 ```
-            jan_ds = time_series_ds.time_between(
-                                        start_time=datetime(2019,12,31),
-                                        end_time=datetime(2020,2,31),
-                                        include_boundary=False
-            )
-            jan_ds.take(100).to_pandas_dataframe()
+        jan_ds = time_series_ds.time_between(
+                                    start_time=datetime(2019,12,31),
+                                    end_time=datetime(2020,2,31),
+                                    include_boundary=False<br/>
+        )
+        jan_ds.take(100).to_pandas_dataframe()
 ```
-    2. Azure Log Analytics - is it part of Azure Monitor? What about Azure App Insights?<br/>
-    3. Highly imbalanced datasets and right metrics<br/>
-    4. MLFlow - details<br/>
-    5. Difference between "publish to web service" and "publish to endpoint" when publishing a pipeline
-    6. What is "spearman correlation"
+* More questions...
+    + Azure Log Analytics - is it part of Azure Monitor? What about Azure App Insights?
+    + Highly imbalanced datasets and right metrics
+    + MLFlow - details
+    + Difference between "publish to web service" and "publish to endpoint" when publishing a pipeline
+    + What is "spearman correlation"
+
+* The model deployments created by Azure Machine Learning can be configured to use one of two authentication methods:
+
+    + **key-based**: A static key is used to authenticate to the web service.
+        Web-services deployed on Azure Kubernetes Service (AKS) have key-based auth enabled by default.
+        Azure Container Instances (ACI) deployed services have key-based auth disabled by default, but you can enable it by setting auth_enabled=Truewhen creating the ACI web-service
+
+    + **token-based**: A temporary token must be obtained from the Azure Machine Learning workspace (using Azure Active Directory) and used to authenticate to the web service. This token expires after a period of time, and must be refreshed to continue working with the web service.
+        When you enable token authentication for a web service, users must present an Azure Machine Learning JSON Web Token to the web service to access it. The token expires after a specified time-frame and needs to be refreshed to continue making calls.
+        + Token authentication is disabled by default when you deploy to Azure Kubernetes Service.
+        + Token authentication isn't supported when you deploy to Azure Container Instances.
+        + Token authentication can't be used at the same time as key-based authentication.
 
 * **Create Image Labeling Project** at https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-image-labeling-projects
+* **Create Batch Inference Pipeline** at https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/parallel-run/tabular-dataset-inference-iris.ipynb
+
+* **Azure ML Fundamental Concepts
+    + **Workspace** https://docs.microsoft.com/en-ca/azure/machine-learning/concept-workspace
+    + **Environment** 
 
 * Machine Learning Designer runs only on ML Compute Cluster
+    + A web service deployed using Azure ML Designer requires by default configuration an authentication header to be passed in the headers for the requests.post method
+
+* Training & Deployment on various compute targets
+    + Azure ML Cluster Compute supports training only, because of 0 cluster nodes and low priority
+    + Azure ML Compute Instance supports training only
+    + AKS clusters support deployment only
+
+* TODO ---> Difference between "Interpretability" and "Explainability": https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-interpretability
+* Example MLflow project at https://github.com/mlflow/mlflow-example
+
 <hr/>
 
+# Comprehensive Azure ML Pipelines
+* [Code: azureml examples] https://github.com/azure/azureml-examples
+* [Code: AutoML examples] https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/continuous-retraining/auto-ml-continuous-retraining.ipynb
+* [KB: Introduction to pipelines] https://docs.microsoft.com/en-us/learn/modules/create-pipelines-in-aml/2-pipelines?WT.mc_id=esi_studyguide_content_wwl
+* [KB: Create and run machine learning pipelines with Azure Machine Learning SDK] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-machine-learning-pipelines?WT.mc_id=esi_studyguide_content_wwl
+* [Tutorial: Build an Azure Machine Learning pipeline for image classification] https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-pipeline-python-sdk
+* [<u>KB: Use automated ML in an Azure Machine Learning pipeline in Python</u>] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-automlstep-in-pipelines
+* [KB: What are Azure Machine Learning pipelines?] https://docs.microsoft.com/en-us/azure/machine-learning/concept-ml-pipelines#which-azure-pipeline-technology-should-i-use
+* [KB: What are compute targets in Azure Machine Learning?] https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-target#train
+* [KB: Introduction to private Docker container registries in Azure] https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro
+* [KB:Moving data into and between ML pipeline steps (Python)] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-move-data-in-out-of-pipelines?WT.mc_id=esi_studyguide_content_wwl
+* [Tutorial: Orchestrate machine learning with pipelines] https://docs.microsoft.com/en-us/learn/modules/create-pipelines-in-aml/1-introduction
+* [Tutorial: Automate model selection with Azure Automl] https://docs.microsoft.com/en-us/learn/modules/automate-model-selection-with-azure-automl/1-introduction
+* [KB: Set up no-code AutoML training with the studio UI] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-automated-ml-for-ml-models?WT.mc_id=esi_studyguide_content_wwl
+* [KB: Configure authentication for models deployed as web services] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-authenticate-web-service
+* [KB: Build an Azure Machine Learning pipeline for image classification] https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-pipeline-python-sdk?WT.mc_id=esi_studyguide_content_wwl
+
+# Use HyperDrive to tune hyperparameters
+* [KB: Hyperparameter tuning a model with Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
+* [KB: Tune hyperparameters with Azure Machine Learning] https://docs.microsoft.com/en-us/learn/modules/tune-hyperparameters-with-azure-machine-learning/1-introduction
+* [Code: train-hyperparameter-tune-deploy-with-pytorch] https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/ml-frameworks/pytorch/train-hyperparameter-tune-deploy-with-pytorch
+
+# Feature Selection
+* [KB: <u>Filter Based Feature Selection</u>] https://docs.microsoft.com/en-us/azure/machine-learning/component-reference/filter-based-feature-selection
+* [KB: <u>Permutation Feature Importance</u>] https://docs.microsoft.com/en-us/azure/machine-learning/component-reference/permutation-feature-importance
+
+# Assess and mitigate model fairness
+* [Code: Binary Classification with the UCI Creditcard Default Dataset] https://github.com/fairlearn/fairlearn/blob/main/notebooks/Binary%20Classification%20with%20the%20UCI%20Credit-card%20Default%20Dataset.ipynb
+* [Code: Unfairness Mitigation with Fairlearn and Azure Machine Learning] https://github.com/Azure/MachineLearningNotebooks/blob/master/contrib/fairness/fairlearn-azureml-mitigation.ipynb
+* [KB: Machine learning fairness] https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml?WT.mc_id=esi_studyguide_content_wwl
+* [KB: Use Azure Machine Learning with the Fairlearn open-source package to assess the fairness of ML models] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=esi_studyguide_content_wwl
+* [Tutorial: Explore differential privacy] https://docs.microsoft.com/en-us/learn/modules/explore-differential-privacy/?WT.mc_id=esi_studyguide_content_wwl
+
+# Deployments
+* [KB: Deploy machine learning models to Azure] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python#registermodel?WT.mc_id=esi_studyguide_content_wwl
+* [KB: Tutorial: Monitor Azure resources with Azure Monitor] https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/monitor-azure-resource
+* [KB: Enterprise security and governance for Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/concept-enterprise-security?WT.mc_id=esi_studyguide_content_wwl
+
+<hr/>
 
 # Azure ML Links: 
 1. https://christophm.github.io/interpretable-ml-book/ 
