@@ -1,5 +1,6 @@
-# Azure ML
+# Azure ML Highlights
 
+## Notes and Comments
 * TabularExplainer calls one of the three SHAP explainers (TreeExplainer, DeepExplainer, or Kernel Explainer.) TabularExplainer automatically selects the most appropriate one for your use case
 * For any batch inference service deployed using Azure ML Designer, default configuration requires an authentication header to be passed as the headers parameter for requeAzure Container Intsasssssssssts 
 * Calling AlsWebservice.deploy_configuration without any parameters will enable key-authentication by default
@@ -277,7 +278,8 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 
 <hr/>
 
-# Comprehensive Azure ML Pipelines
+# Azure ML Study Material
+## Comprehensive Azure ML Pipelines
 * [Code: azureml examples] https://github.com/azure/azureml-examples
 * [Code: AutoML examples] https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/continuous-retraining/auto-ml-continuous-retraining.ipynb
 * [KB: Introduction to pipelines] https://docs.microsoft.com/en-us/learn/modules/create-pipelines-in-aml/2-pipelines?WT.mc_id=esi_studyguide_content_wwl
@@ -294,30 +296,30 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 * [KB: Configure authentication for models deployed as web services] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-authenticate-web-service
 * [KB: Build an Azure Machine Learning pipeline for image classification] https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-pipeline-python-sdk?WT.mc_id=esi_studyguide_content_wwl
 
-# Use HyperDrive to tune hyperparameters
+## Use HyperDrive to tune hyperparameters
 * [KB: Hyperparameter tuning a model with Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
 * [KB: Tune hyperparameters with Azure Machine Learning] https://docs.microsoft.com/en-us/learn/modules/tune-hyperparameters-with-azure-machine-learning/1-introduction
 * [Code: train-hyperparameter-tune-deploy-with-pytorch] https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/ml-frameworks/pytorch/train-hyperparameter-tune-deploy-with-pytorch
 
-# Feature Selection
+## Feature Selection
 * [KB: <u>Filter Based Feature Selection</u>] https://docs.microsoft.com/en-us/azure/machine-learning/component-reference/filter-based-feature-selection
 * [KB: <u>Permutation Feature Importance</u>] https://docs.microsoft.com/en-us/azure/machine-learning/component-reference/permutation-feature-importance
 
-# Assess and mitigate model fairness
+## Assess and mitigate model fairness
 * [Code: Binary Classification with the UCI Creditcard Default Dataset] https://github.com/fairlearn/fairlearn/blob/main/notebooks/Binary%20Classification%20with%20the%20UCI%20Credit-card%20Default%20Dataset.ipynb
 * [Code: Unfairness Mitigation with Fairlearn and Azure Machine Learning] https://github.com/Azure/MachineLearningNotebooks/blob/master/contrib/fairness/fairlearn-azureml-mitigation.ipynb
 * [KB: Machine learning fairness] https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml?WT.mc_id=esi_studyguide_content_wwl
 * [KB: Use Azure Machine Learning with the Fairlearn open-source package to assess the fairness of ML models] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=esi_studyguide_content_wwl
 * [Tutorial: Explore differential privacy] https://docs.microsoft.com/en-us/learn/modules/explore-differential-privacy/?WT.mc_id=esi_studyguide_content_wwl
 
-# Deployments
+## Deployments
 * [KB: Deploy machine learning models to Azure] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python#registermodel?WT.mc_id=esi_studyguide_content_wwl
 * [KB: Tutorial: Monitor Azure resources with Azure Monitor] https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/monitor-azure-resource
 * [KB: Enterprise security and governance for Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/concept-enterprise-security?WT.mc_id=esi_studyguide_content_wwl
 
 <hr/>
 
-# Azure ML Links: 
+## Azure ML Links: 
 1. https://christophm.github.io/interpretable-ml-book/ 
 2. https://shap.readthedocs.io/en/latest/ 
 3. https://christophm.github.io/interpretable-ml-book/shapley.html
@@ -339,6 +341,6 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 19. https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml
 20. https://docs.microsoft.com/en-us/azure/machine-learning/how-to-assign-roles
 
-# Statistics Links
+## Statistics Links
 1. Understanding Boxplots - https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51#:~:text=A%20boxplot%20is%20a%20standardized,and%20what%20their%20values%20are.
 2. Precision vs Recall - https://medium.com/@shrutisaxena0617/precision-vs-recall-386cf9f89488#:~:text=Precision%20and%20recall%20are%20two,correctly%20classified%20by%20your%20algorithm.
