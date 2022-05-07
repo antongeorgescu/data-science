@@ -1,9 +1,10 @@
 # Azure ML Highlights
 
 ## Notes and Comments
+* BEST SUMMARY on How Azure Machine Learning works: Architecture and concepts https://docs.microsoft.com/en-us/azure/machine-learning/concept-azure-machine-learning-architecture#endpoints
 * TabularExplainer calls one of the three SHAP explainers (TreeExplainer, DeepExplainer, or Kernel Explainer.) TabularExplainer automatically selects the most appropriate one for your use case
-* For any batch inference service deployed using Azure ML Designer, default configuration requires an authentication header to be passed as the headers parameter for requeAzure Container Intsasssssssssts 
-* Calling AlsWebservice.deploy_configuration without any parameters will enable key-authentication by default
+* For any batch inference service deployed using Azure ML Designer, default configuration requires an authentication header to be passed as the headers parameter for request  
+* Calling AksWebservice.deploy_configuration without any parameters will enable key-authentication by default
     + AksWebservice.deploy_configuration(token_auth_enabled=True,auth_enabled=False) is calling token-based authn
     + AksWebservice.deploy_configuration(auth_enabled=True) and AksWebservice.deploy_configuration() are both calling key-based authn
 * Right way to call a batch inferencing model:
@@ -186,11 +187,11 @@ However, you can create discrete hyperparameters using a distribution (like a ra
     <u>Note:</u> You cannot use <i>az ml workspace update</i> CLI command (not including role assignment)
 
 * Various Compute Targets for various activities:
-    + **Azure ML Compute Clusters**: <u>Training only</u>
+    + **Azure ML Compute Clusters**: <u>Training & inferencing for dev/test purposes</u>
         Compute Clusters are scalable machine learning platforms consisting of one or more CPU or GPU nodes. Compute clusters can scale from 0 to hundreds of nodes, depending on workload. Compute clusters support the use of low-priority VMs, whihc do not have giaranteed availability. Using low-priority VMs can help reduce machine learning costs. Azure ML compute clusters can be used for training pipelines, but <i>not for pipeline deployment because this functionality is not supported</i>
-    + **Azure ML Compute Instance**: <u>Training only</u>
+    + **Azure ML Compute Instance**: <u>Production grade training only</u>
         A compute instance is a single Azure-homed visrtual machine (VM) Azure ML compute instances are highly scalable cloud compute resources, whihc support multiple CPUs and large amounts of RAM based on VM size you select at deployment. Unlike a computer cluster, a compute instance cannot scale down to 0, meaning that usage charges accrue unless you power off the VM. Azure ML compute instances can be used for training pipelines, but <i>not for pipeline deployment because this functionality is not supported</i>
-    + **AKS Clusters**: <u>Deployment only</u>
+    + **AKS Clusters**: <u>Production grade deployment</u>
         AKS clusters are designed for heavy, real-time production workloads. One of the primary benefits of deploying to AKS is support for auto-scaling. This means that as workload increases or decreases, an AKS cluster can add or terminate cluster nodes. In addition for supporting multiple-node clusters, AKS can be used for experiments that require hardware acceleration via GPU or Field-Programmable Gate Arrays (FPGA)
 
 * Open Neural Netwoek Exchange (ONNX) model accepts only Decision Tree and Random Forest for regression problems
@@ -273,12 +274,23 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
     + Azure ML Compute Instance supports training only
     + AKS clusters support deployment only
 
+* Add new kernels
+    1. **conda create --name newenv** (create new envionment)
+    2. **conda activate newenv** (activate environment)
+    3. **conda install pip**
+    4. **conda install ipykernel**
+    5. **python -m ipykernel install --user --name newenv --display-name "Python (newenv)"** (create a kernel for conda env)
+
 * TODO ---> Difference between "Interpretability" and "Explainability": https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-interpretability
 * Example MLflow project at https://github.com/mlflow/mlflow-example
 
 <hr/>
 
 # Azure ML Study Material
+
+## Models
+* [KB: Python scikit-learn Linear Models] https://scikit-learn.org/stable/modules/linear_model.html
+
 ## Comprehensive Azure ML Pipelines
 * [Code: azureml examples] https://github.com/azure/azureml-examples
 * [Code: AutoML examples] https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/continuous-retraining/auto-ml-continuous-retraining.ipynb
@@ -295,6 +307,9 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 * [KB: Set up no-code AutoML training with the studio UI] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-automated-ml-for-ml-models?WT.mc_id=esi_studyguide_content_wwl
 * [KB: Configure authentication for models deployed as web services] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-authenticate-web-service
 * [KB: Build an Azure Machine Learning pipeline for image classification] https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-pipeline-python-sdk?WT.mc_id=esi_studyguide_content_wwl
+* [KB: PipelineParameter Class] https://docs.microsoft.com/en-us/python/api/azureml-pipeline-core/azureml.pipeline.core.graph.pipelineparameter?view=azure-ml-py
+* [KB: PYTORCH Creating batch endpoints in Azure ML] https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/creating-batch-endpoints-in-azure-ml/ba-p/3039821
+* [KB: Binary Classification Income Prediction] https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-feature-selection-income-prediction.md
 
 ## Use HyperDrive to tune hyperparameters
 * [KB: Hyperparameter tuning a model with Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
@@ -314,8 +329,26 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 
 ## Deployments
 * [KB: Deploy machine learning models to Azure] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python#registermodel?WT.mc_id=esi_studyguide_content_wwl
-* [KB: Tutorial: Monitor Azure resources with Azure Monitor] https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/monitor-azure-resource
+* [KB: Monitor Azure resources with Azure Monitor] https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/monitor-azure-resource
 * [KB: Enterprise security and governance for Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/concept-enterprise-security?WT.mc_id=esi_studyguide_content_wwl
+* [KB: Deploy a model to an Azure Kubernetes Service cluster] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-azure-kubernetes-service?tabs=python
+* [KB: Designer - deploy a machine learning model] https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-designer-automobile-price-deploy?WT.mc_id=esi_studyguide_content_wwl
+    + Create a real-time inference pipeline
+    + Create an inferencing cluster
+    + Deploy the real-time endpoints
+    + Test the real-time endpoints 
+* [KB: Configure authentication for models deployed as web services] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-authenticate-web-service
+* [KB: Manage HDInsight clusters by using the Apache Ambari REST API] https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-manage-ambari-rest-api
+* [KB: Enterprise security and governance for Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/concept-enterprise-security?WT.mc_id=esi_studyguide_content_wwl
+
+## Containers
+* [KB: Configure a custom container for Azure App Service] https://docs.microsoft.com/en-us/azure/app-service/configure-custom-container?pivots=container-linux
+
+## Security 
+* [KB: How to use Managed Identities in Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-managed-identities?tabs=python
+
+# Check It Out!
+* [KB: Run batch predictions using Azure Machine Learning designer] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-run-batch-predictions-designer 
 
 <hr/>
 
