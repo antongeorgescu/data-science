@@ -291,6 +291,9 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 ## Models
 * [KB: Python scikit-learn Linear Models] https://scikit-learn.org/stable/modules/linear_model.html
 
+## Computes
+* [KB: Create compute targets for model training and deployment in Azure Machine Learning studio] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-attach-compute-studio#ssh-access
+
 ## Comprehensive Azure ML Pipelines
 * [Code: azureml examples] https://github.com/azure/azureml-examples
 * [Code: AutoML examples] https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/continuous-retraining/auto-ml-continuous-retraining.ipynb
@@ -346,6 +349,8 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 
 ## Security 
 * [KB: How to use Managed Identities in Azure Machine Learning] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-managed-identities?tabs=python
+* [KB: Create or update Azure custom roles using the Azure portal] https://docs.microsoft.com/en-us/azure/role-based-access-control/custom-roles-portal
+* [KB: Understand Azure role definitions] https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#control-and-data-actions
 
 # Check It Out!
 * [KB: Run batch predictions using Azure Machine Learning designer] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-run-batch-predictions-designer 
