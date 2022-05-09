@@ -290,6 +290,10 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 
 ## Models
 * [KB: Python scikit-learn Linear Models] https://scikit-learn.org/stable/modules/linear_model.html
+* [KB: Create an image labeling project and export labels] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-image-labeling-projects
+* [KB: Datastores And Datasets In Azure] https://k21academy.com/microsoft-azure/dp-100/datastores-and-datasets-in-azure/
+* [KB: Set up AutoML to train a time-series forecasting model with Python] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-forecast
+* [KB: Data Cleaning Challenge: Scale and Normalize Data] https://www.kaggle.com/code/rtatman/data-cleaning-challenge-scale-and-normalize-data/notebook
 
 ## Computes
 * [KB: Create compute targets for model training and deployment in Azure Machine Learning studio] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-attach-compute-studio#ssh-access
@@ -322,6 +326,7 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 ## Feature Selection
 * [KB: <u>Filter Based Feature Selection</u>] https://docs.microsoft.com/en-us/azure/machine-learning/component-reference/filter-based-feature-selection
 * [KB: <u>Permutation Feature Importance</u>] https://docs.microsoft.com/en-us/azure/machine-learning/component-reference/permutation-feature-importance
+* [Whitepaper: SMOTE: Synthetic Minority Over-sampling Technique] https://jair.org/index.php/jair/article/view/10302
 
 ## Assess and mitigate model fairness
 * [Code: Binary Classification with the UCI Creditcard Default Dataset] https://github.com/fairlearn/fairlearn/blob/main/notebooks/Binary%20Classification%20with%20the%20UCI%20Credit-card%20Default%20Dataset.ipynb
@@ -353,7 +358,10 @@ Too ensure output files are uploaded in real time you need to add <i>experiment_
 * [KB: Understand Azure role definitions] https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#control-and-data-actions
 
 # Check It Out!
+* [Github: Intelligent Cloud Demonstrations] https://github.com/dxuk/Stand-Demos
 * [KB: Run batch predictions using Azure Machine Learning designer] https://docs.microsoft.com/en-us/azure/machine-learning/how-to-run-batch-predictions-designer 
+* [Notebook: Tabular Time Series Related API Demo with NOAA Weather Data] https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/timeseries-datasets/tabular-timeseries-dataset-filtering.ipynb
+* [SUMMARY: Build and operate machine learning solutions with Azure Machine Learning] https://docs.microsoft.com/en-us/learn/paths/build-ai-solutions-with-azure-ml-service/ 
 
 <hr/>
 
