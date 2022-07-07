@@ -13,7 +13,7 @@ def vector_assembler(*dfvectors):
     
     dfresult = dfvectors[0]
     for dfv in dfvectors[1:]:
-        dfresult = np.append(dfv,dfv,axis=1)
+        dfresult = pd.concat([dfresult,dfv],axis=1,join='inner')
             
     # dfresult = pd.DataFrame(aR, columns = ['Column_A','Column_B','Column_C'])
     return dfresult
@@ -69,7 +69,7 @@ def scale_numeric(df,cols):
 
     return dfscalenum
 
-def category_onehot_encoder(df,cols):
+def category_dummy_encoder(df,cols):
     dfencodeonehot = df
     for c in cols:
         dfencodeonehot = pd.get_dummies(dfencodeonehot, columns=[c])
@@ -87,6 +87,26 @@ def category_onehot_encoder(df,cols):
         # print(dfencodeonehot.head(5))
     
     return dfencodeonehot
+
+def category_onehot_encoder(df,cols):
+    
+    enc = OneHotEncoder(sparse=True)
+    empty_list = [[None]] * len(df)
+    
+    df_encoded = pd.DataFrame()
+    for c in cols:
+        col_name = f'{c}_classVector'
+
+        df_temp = pd.DataFrame()
+        x_vector = enc.fit_transform(df[[c]]).toarray()  
+        
+        df_temp[[col_name]] = empty_list
+        for idx, row in df.iterrows():
+            df_temp.loc[idx,col_name] = x_vector[idx]
+
+        df_encoded[[col_name]] = df_temp[[col_name]]
+    
+    return df_encoded
 
 def category_string_encoder(df,cols,type='ordinal'):
     df_encoded = pd.DataFrame()

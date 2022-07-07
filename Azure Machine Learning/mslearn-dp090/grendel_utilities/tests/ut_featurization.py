@@ -68,12 +68,12 @@ class TestDataFeaturization(unittest.TestCase):
         return
 
     def run_multivector_assembler(self):
-        v1 = [[1,2,3,4,5],[11,12,13,14,15]]
-        v2 = [[6,7,8],[16,17,18]]
-        v3 = [[9,10],[19,20]]
+        v1 = pd.DataFrame([[1,2,3,4,5],[11,12,13,14,15]],columns=["a1","a2","a3","a4","a5"])
+        v2 = pd.DataFrame([[6,7,8],[16,17,18]],columns=["b1","b2","b3"])
+        v3 = pd.DataFrame([[9,10],[19,20]],columns=["c1","c2"])
 
         vR = vector_assembler(v1,v2,v3)
-        print(list(vR))
+        print(vR.head())
         return
 
     def normalize_label_encoder2(self):
@@ -214,10 +214,10 @@ class TestDataFeaturization(unittest.TestCase):
 
 if __name__ == '__main__':
     # unittest.main(TestDataFeaturization().get_and_fix_dataset())
-    # unittest.main(TestDataFeaturization().run_multivector_assembler())
+    unittest.main(TestDataFeaturization().run_multivector_assembler())
     # unittest.main(TestDataFeaturization().normalize_label_encoder())
     # unittest.main(TestDataFeaturization().normalize_ordinal_encoder())
     # unittest.main(TestDataFeaturization().normalize_onehot_encoder())
     # unittest.main(TestDataFeaturization().normalize_onehot_encoder_2())
-    unittest.main(TestDataFeaturization().normalize_getdummies_encoder())
+    # unittest.main(TestDataFeaturization().normalize_getdummies_encoder())
     

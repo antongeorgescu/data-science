@@ -93,7 +93,7 @@ class TestPipelines(unittest.TestCase):
         print("Category ordinal columns:",dfencordinal.columns)
 
         # 5. category encoding: apply onehot encoder
-        dfenconehot = category_string_encoder(dfscaled,cols)
+        dfenconehot = category_onehot_encoder(dfscaled,cols)
         res = input("Display category onehot encoded dataset (Y/n)")
         if res.upper() == 'Y':
             print(dfenconehot.head(8))
