@@ -1,20 +1,11 @@
 #!/usr/bin/env python3
 #import packages
 import os,sys
-import inspect
-import uuid
 import unittest
-import yfinance
-import requests
-import json
-import requests_cache
-from bs4 import BeautifulSoup
 import pandas as pd
-from spacy.lang.en import English
-import pickle
-from cryptography.fernet import Fernet
 import numpy as np
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder, OneHotEncoder
+from pathlib import Path
 
 import seaborn as sns
 
@@ -28,10 +19,10 @@ warnings.filterwarnings("ignore")
 # https://datagy.io/sklearn-one-hot-encode/
 
 class TestDataFeaturization(unittest.TestCase):
-    def __init__(self):
+    def setUp(self):
         self.currdir = os.getcwd () 
 
-    def get_and_fix_dataset(self):
+    def test_get_and_fix_dataset(self):
         file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\imports-85.data'
     
         # Define the headers since the data does not have any
@@ -59,33 +50,35 @@ class TestDataFeaturization(unittest.TestCase):
         obj_df = obj_df.fillna({"num_doors": "four"})
         
         # save the fixed dataset to data folder
-        file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\99 - Grendel Utilities\\data\\imputed-85.data'
-        pd.to_csv(file_path)
+        file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\imputed-85.data'
+        obj_df.to_csv(file_path)
 
-        return
+        self.assertTrue(Path(file_path).stat().st_size > 0)
 
-    def encode_onehot(self,df):
-        return
+    # def encode_onehot(self,df):
+    #     return
 
-    def run_multivector_assembler(self):
+    def test_run_multivector_assembler(self):
         v1 = pd.DataFrame([[1,2,3,4,5],[11,12,13,14,15]],columns=["a1","a2","a3","a4","a5"])
         v2 = pd.DataFrame([[6,7,8],[16,17,18]],columns=["b1","b2","b3"])
         v3 = pd.DataFrame([[9,10],[19,20]],columns=["c1","c2"])
 
         vR = vector_assembler(v1,v2,v3)
+        print(f"\n*** Results for {self._testMethodName}")
         print(vR.head())
-        return
+        self.assertTrue(len(vR.columns) == 10)
 
-    def normalize_label_encoder2(self):
+    def test_normalize_label_encoder2(self):
         le = LabelEncoder()
         le.fit([1, 1, 2, 6])
         print(le.classes_)
         ar = le.fit_transform([1, 1, 2, 6])
+        print(f"\n*** Results for {self._testMethodName}")
         print(ar)
         print(le.inverse_transform(ar))
-        return
+        self.assertTrue(ar.size == 4)
 
-    def normalize_label_encoder(self):
+    def test_normalize_label_encoder(self):
         file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\encoding_test_data.csv'
     
         # Read in the CSV file and convert "?" to NaN
@@ -97,10 +90,11 @@ class TestDataFeaturization(unittest.TestCase):
         for col in cols:
             df[col] = enc.fit_transform(df[col])
         
+        print(f"\n*** Results for {self._testMethodName}")
         print(df.head(8))
-        return
+        self.assertTrue(df.columns.size == 7)
 
-    def normalize_ordinal_encoder(self):
+    def test_normalize_ordinal_encoder(self):
         file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\encoding_test_data.csv'
     
         # Read in the CSV file and convert "?" to NaN
@@ -111,10 +105,11 @@ class TestDataFeaturization(unittest.TestCase):
 
         enc = OrdinalEncoder()
         df[cols] = enc.fit_transform(df[cols])
+        print(f"\n*** Results for {self._testMethodName}")
         print(df.head(8))
-        return
+        self.assertTrue(df.columns.size == 7)
 
-    def normalize_getdummies_encoder(self):
+    def test_normalize_getdummies_encoder(self):
         file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\encoding_test_data.csv'
     
         # Read in the CSV file and convert "?" to NaN
@@ -140,10 +135,11 @@ class TestDataFeaturization(unittest.TestCase):
                 df_temp.loc[idx,col_name] = x_vector[idx]
             df_encoded[[col_name]] = df_temp[[col_name]]
         
+        print(f"\n*** nResults for {self._testMethodName}")
         print(df_encoded.head(5))
-        return
+        self.assertTrue(df_encoded.size == 21)
 
-    def normalize_onehot_encoder_2(self):
+    def test_normalize_onehot_encoder_2(self):
         file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\encoding_test_data.csv'
     
         # Read in the CSV file and convert "?" to NaN
@@ -174,11 +170,11 @@ class TestDataFeaturization(unittest.TestCase):
             print(df_temp.head(5))
 
             df_encoded[[col_name]] = df_temp[[col_name]]
-        
+        print(f"\n*** Results for {self._testMethodName}")
         print(df_encoded)
-        return
+        self.assertTrue(df_encoded.columns.size == 3)
 
-    def normalize_onehot_encoder(self):
+    def test_normalize_onehot_encoder(self):
         df = sns.load_dataset('penguins')
         print(df.head())
         print(df.describe())
@@ -205,19 +201,17 @@ class TestDataFeaturization(unittest.TestCase):
 
             df_encoded[[col_name]] = df_temp[[col_name]]
         
+        print(f"\n*** Results for {self._testMethodName}")
         print(df_encoded)
-        return
-
-    def pipeline_encode(self):
-
-        return
+        self.assertTrue(df_encoded.columns.size == 3)
 
 if __name__ == '__main__':
     # unittest.main(TestDataFeaturization().get_and_fix_dataset())
-    unittest.main(TestDataFeaturization().run_multivector_assembler())
+    # unittest.main(TestDataFeaturization().run_multivector_assembler())
     # unittest.main(TestDataFeaturization().normalize_label_encoder())
     # unittest.main(TestDataFeaturization().normalize_ordinal_encoder())
     # unittest.main(TestDataFeaturization().normalize_onehot_encoder())
     # unittest.main(TestDataFeaturization().normalize_onehot_encoder_2())
     # unittest.main(TestDataFeaturization().normalize_getdummies_encoder())
     
+    unittest.main()

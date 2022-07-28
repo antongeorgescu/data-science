@@ -6,6 +6,7 @@ from sklearn.tree import DecisionTreeClassifier
 import unittest
 import os, sys
 import pandas as pd
+import numpy as np
 
 # importing pipes for making the Pipe flow
 from sklearn.pipeline import Pipeline
@@ -19,10 +20,11 @@ import warnings
 warnings.filterwarnings("ignore")
 
 class TestPipelines(unittest.TestCase):
-    def __init__(self):
+    def setUp(self):
         self.currdir = os.getcwd () 
 
-    def run_iris_dataset(self):
+    @unittest.skip("skip scoring unit test")
+    def test_run_iris_dataset(self):
         # import some data within sklearn for iris classification
         iris = datasets.load_iris()
         X = iris.data
@@ -46,73 +48,116 @@ class TestPipelines(unittest.TestCase):
         
         print(accuracy_score(y_test, pipe.predict(X_test)))
 
-    def run_nyctaxi_dataset_no_pipe(self):
+    def test_run_nyctaxi_dataset_no_pipe(self):
+        SHOW_COLS_ONLY = False
+        NO_STEPS = 0
+
+        dtframes = []
+
         # 1. read the csv file in a dataframe
+        NO_STEPS = NO_STEPS + 1
         file_path = f'{self.currdir}\\Azure Machine Learning\\mslearn-dp090\\grendel_utilities\\data\\nyc-taxi.csv'
     
         # Read in the CSV file and convert "?" to NaN
         originalDF = pd.read_csv(file_path,header='infer')
-        res = input("Display original dataset (Y/n)")
-        if res.upper() == 'Y':
+        if not SHOW_COLS_ONLY:
             print(originalDF.head(8))
-        print("Original columns:",originalDF.columns)
+        print("#1. Original columns:",originalDF.columns)
 
         # 2. impute missing data
+        NO_STEPS = NO_STEPS + 1
         imputedDF = impute_missing(originalDF,"passengerCount")
         # drop totalAmount column
         imputedDF.drop(["totalAmount"],axis=1,inplace=True)
-        res = input("Display imputed dataset (Y/n)")
-        if res.upper() == 'Y':
+        if not SHOW_COLS_ONLY:
             print(imputedDF.head(8))
             print(imputedDF.describe())
-        print("Imputed columns:",imputedDF.columns)
+        print("#2. Imputed columns:",imputedDF.columns)
 
         # 3. scale & normalize numeric features
+        NO_STEPS = NO_STEPS + 1
         # transform cyclical attributes (eg hour of day, day of month etc)
         cycle_col = "hour_of_day"
         dfsincos, col_sine, col_cosine = sine_cosine_cyclic(imputedDF,cycle_col,24)
-        res = input("Display sine-cosine dataset (Y/n)")
-        if res.upper() == 'Y':
+        if not SHOW_COLS_ONLY:
             print(dfsincos.head(5))
-        print("Sine-cosine columns:",dfsincos.columns)
+        print("#3. Sine-cosine columns:",dfsincos.columns)
 
-        # scale numerical values
+        # 4. scale numerical values
+        NO_STEPS = NO_STEPS + 1
         numerical_cols = ["passengerCount", "tripDistance", "snowDepth", "precipTime", "precipDepth", "temperature", col_sine, col_cosine]
         dfscaled = scale_numeric(dfsincos,numerical_cols)
-        res = input("Display numeric scaled dataset (Y/n)")
-        if res.upper() == 'Y':
+        if not SHOW_COLS_ONLY:
             print(dfscaled.head(5))
-        print("Numeric scaled columns:",dfscaled.columns)
+        print("#4. Numeric scaled columns:",dfscaled.columns)
 
-        # 4. category encoding: apply ordinal encoder
-        cols = ["day_of_week", "month_num", "normalizeHolidayName", "isPaidTimeOff"]
-        dfencordinal = category_string_encoder(dfscaled,cols)
-        res = input("Display category ordinal encoded dataset (Y/n)")
-        if res.upper() == 'Y':
+        cols = ['scaled_numerical_features']
+        dtf1 = dfscaled[cols]
+
+        # 5-SE. category encoding: apply ordinal encoder
+        NO_STEPS = NO_STEPS + 1
+        categorical_cols = ["day_of_week", "month_num", "normalizeHolidayName", "isPaidTimeOff"]
+        dfencordinal = category_string_encoder(dfscaled,categorical_cols)
+        if not SHOW_COLS_ONLY:
             print(dfencordinal.head(8))
-        print("Category ordinal columns:",dfencordinal.columns)
+        print("#5-SE. [String Encoder] Category ordinal columns:",dfencordinal.columns)
 
-        # 5. category encoding: apply onehot encoder
-        dfenconehot = category_onehot_encoder(dfscaled,cols)
-        res = input("Display category onehot encoded dataset (Y/n)")
-        if res.upper() == 'Y':
+        # 5-OH. category encoding: apply onehot encoder
+        dfenconehot = category_onehot_encoder(dfscaled,categorical_cols)
+        if not SHOW_COLS_ONLY:
             print(dfenconehot.head(8))
-        print("Category onehot encoded columns:", dfenconehot.columns)
+        print("#5-OH. [Onehot Encoder] Category ordinal columns:",dfencordinal.columns)
 
         # 6. apply vector assembly on categories
+        NO_STEPS = NO_STEPS + 1
         dfassembled = vector_assembler(dfscaled,dfenconehot)
-        res = input("Display vector assembled dataset (Y/n)")
-        if res.upper() == 'Y':
+        if not SHOW_COLS_ONLY:
             print(dfassembled.head(8))
-        print("Vector assembled columns:", dfassembled.columns)
+        print("#6. Vector assembled columns:", dfassembled.columns)
 
-        # 7. run the algorithm
+        cols = ['day_of_week_classVector','month_num_classVector', 'normalizeHolidayName_classVector','isPaidTimeOff_classVector']
+        dtf2 = dfassembled[cols]
 
-        # 8. calculate accuracy score
+        # 7. join the process dataframes into the final one (eg engineered)
+        NO_STEPS = NO_STEPS + 1
+        print('#scaled_numerical_features',len(dtf1['scaled_numerical_features'][0]))
+        print('#day_of_week_classVector',len(dtf2['day_of_week_classVector'][0]))
+        print('#month_num_classVector',len(dtf2['month_num_classVector'][0]))
+        print('#normalizeHolidayName_classVector',len(dtf2['normalizeHolidayName_classVector'][0]))
+        print('#isPaidTimeOff_classVector',len(dtf2['isPaidTimeOff_classVector'][0]))
+        
+        numFeatures = len(dtf1['scaled_numerical_features'][0]) + len(dtf2['day_of_week_classVector'][0]) + len(dtf2['month_num_classVector'][0]) + len(dtf2['normalizeHolidayName_classVector'][0]) + len(dtf2['isPaidTimeOff_classVector'][0])
+        print(f"Sum features: {numFeatures}")
+        
+        dtframes = [pd.DataFrame(dtf2['day_of_week_classVector']),pd.DataFrame(dtf2['month_num_classVector'])]
 
-        return
+        print(dtf2.head(10))
+
+        # concatenate vectors
+        xfvec = np.concatenate((dtf2['day_of_week_classVector'].to_list(),dtf2['month_num_classVector'].to_list(),dtf2['normalizeHolidayName_classVector'].to_list(),dtf2['isPaidTimeOff_classVector'].to_list()),axis=1)
+        print(xfvec)
+        
+        # concatenate sclar array with vector result
+        xfeatures = np.concatenate((np.array(dtf1['scaled_numerical_features']),xfvec),axis=1)
+
+        dffeatures = pd.DataFrame(xfeatures)
+        print(dffeatures.head(8))
+
+        # 8. build the features dataframe
+        NO_STEPS = NO_STEPS + 1
+
+
+        # 9. run the algorithm
+        NO_STEPS = NO_STEPS + 1
+
+        # 10. calculate accuracy score
+        NO_STEPS = NO_STEPS + 1
+
+        self.assertTrue(NO_STEPS == 10)
 
 if __name__ == '__main__':
-    # unittest.main(TestPipelines().run())
+    
     # unittest.main(TestPipelines().run_iris_dataset())
-    unittest.main(TestPipelines().run_nyctaxi_dataset_no_pipe())
+    # unittest.main(TestPipelines().test_run_nyctaxi_dataset_no_pipe())
+
+    unittest.main()
