@@ -118,7 +118,7 @@ class TestPipelines(unittest.TestCase):
         cols = ['day_of_week_classVector','month_num_classVector', 'normalizeHolidayName_classVector','isPaidTimeOff_classVector']
         dtf2 = dfassembled[cols]
 
-        # 7. join the process dataframes into the final one (eg engineered)
+        # 7. join the processed (engineered) dataframes into final features 
         NO_STEPS = NO_STEPS + 1
         print('#scaled_numerical_features',len(dtf1['scaled_numerical_features'][0]))
         print('#day_of_week_classVector',len(dtf2['day_of_week_classVector'][0]))
@@ -129,23 +129,25 @@ class TestPipelines(unittest.TestCase):
         numFeatures = len(dtf1['scaled_numerical_features'][0]) + len(dtf2['day_of_week_classVector'][0]) + len(dtf2['month_num_classVector'][0]) + len(dtf2['normalizeHolidayName_classVector'][0]) + len(dtf2['isPaidTimeOff_classVector'][0])
         print(f"Sum features: {numFeatures}")
         
-        dtframes = [pd.DataFrame(dtf2['day_of_week_classVector']),pd.DataFrame(dtf2['month_num_classVector'])]
-
-        print(dtf2.head(10))
-
         # concatenate vectors
-        xfvec = np.concatenate((dtf2['day_of_week_classVector'].to_list(),dtf2['month_num_classVector'].to_list(),dtf2['normalizeHolidayName_classVector'].to_list(),dtf2['isPaidTimeOff_classVector'].to_list()),axis=1)
+        xfvec = np.array(np.concatenate((dtf2['day_of_week_classVector'].to_list(),dtf2['month_num_classVector'].to_list(),dtf2['normalizeHolidayName_classVector'].to_list(),dtf2['isPaidTimeOff_classVector'].to_list()),axis=1))
         print(xfvec)
+
+        xfsca = np.array(dtf1['scaled_numerical_features'].values)
+
+        xfeatures = []
+        for i in range(len(xfvec)):
+            try:
+                xfeatures.append(np.concatenate((xfvec[i],xfsca[i])))
+            except Exception as e:
+                print(e)
         
-        # concatenate sclar array with vector result
-        xfeatures = np.concatenate((np.array(dtf1['scaled_numerical_features']),xfvec),axis=1)
-
-        dffeatures = pd.DataFrame(xfeatures)
-        print(dffeatures.head(8))
-
+        print(xfeatures)
+        
         # 8. build the features dataframe
         NO_STEPS = NO_STEPS + 1
-
+        dffeatures = pd.DataFrame(xfeatures)
+        print(dffeatures.head(8))
 
         # 9. run the algorithm
         NO_STEPS = NO_STEPS + 1
